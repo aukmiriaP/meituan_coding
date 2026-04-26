@@ -1010,15 +1010,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div>
-          <p className="eyebrow">美团 AI coding demo</p>
-          <h1>慢病用药小管家</h1>
-          <p className="subtitle">
-            主应用负责总览，右侧微信专属 Agent 负责提醒、追问与快捷协助。
-          </p>
+        <div className="brand-lockup">
+          <strong>慢病用药小管家</strong>
         </div>
         <div className="topbar-actions">
-          <div className="segmented" role="tablist" aria-label="身份视角">
+          <div className={`segmented ${roleView}`} role="tablist" aria-label="身份视角">
             <button
               className={roleView === "patient" ? "active" : ""}
               onClick={() => setRoleView("patient")}
@@ -1038,7 +1034,43 @@ function App() {
         </div>
       </header>
 
-      <main className={`workspace ${agentOpen ? "agent-open" : "agent-closed"}`}>
+      <div className="app-body">
+        <aside className="side-nav" aria-label="功能导航">
+          <nav className="side-menu">
+            <button
+              className={activeTab === "today" ? "active" : ""}
+              onClick={() => setActiveTab("today")}
+            >
+              <span>▦</span>
+              今日打卡
+            </button>
+            <button
+              className={activeTab === "cabinet" ? "active" : ""}
+              onClick={() => setActiveTab("cabinet")}
+            >
+              <span>◷</span>
+              智能药箱
+            </button>
+            <button
+              className={activeTab === "vitals" ? "active" : ""}
+              onClick={() => setActiveTab("vitals")}
+            >
+              <span>✚</span>
+              体征日记
+            </button>
+          </nav>
+        </aside>
+
+        <div className="content-shell">
+          <div className="page-title">
+            <p className="eyebrow">美团 AI coding demo</p>
+            <h1>慢病用药小管家</h1>
+            <p className="subtitle">
+              主应用负责总览，右侧微信专属 Agent 负责提醒、追问与快捷协助。
+            </p>
+          </div>
+
+          <main className={`workspace ${agentOpen ? "agent-open" : "agent-closed"}`}>
         <section className="main-panel">
           <div className="status-row">
             <div className="time-switch">
@@ -1385,7 +1417,9 @@ function App() {
                         <strong>合规提示</strong>
                         <p>{entry.complianceNotice}</p>
                       </div>
-                      <button className="primary-button secondary">点击连线美团在线医生</button>
+                      <button className="primary-button secondary" onClick={() => openDoctorConsultLink()}>
+                        点击连线美团在线医生
+                      </button>
                     </article>
                   ))}
                 </div>
@@ -1456,7 +1490,9 @@ function App() {
             </button>
           )}
         </aside>
-      </main>
+          </main>
+        </div>
+      </div>
     </div>
   );
 }
