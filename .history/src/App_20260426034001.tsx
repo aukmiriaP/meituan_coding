@@ -1079,7 +1079,7 @@ function App() {
                 </p>
               </div>
               <div className="warning-actions">
-                <button onClick={() => triggerAgentFollowUp(riskMedications[0]?.id)}>Agent 跟进</button>
+                <button onClick={() => triggerAgentFollowUp(riskMedications[0]?.id)}>用 Agent 跟进</button>
                 <button className="soft" onClick={() => openRefillLink(riskMedications[0]?.id)}>
                   一键续方
                 </button>
@@ -1186,7 +1186,7 @@ function App() {
                                 className="ghost-button small"
                                 onClick={() => triggerAgentFollowUp(medication.id, slot)}
                               >
-                                Agent 跟进
+                                让 Agent 跟进
                               </button>
                             </div>
                           </section>
